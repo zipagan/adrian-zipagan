@@ -1,0 +1,422 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   ADRIAN WEB
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+   // Configure Tailwind to support dark mode class strategy and custom colors
+   tailwind.config = {
+     darkMode: 'class',
+     theme: {
+       extend: {
+         colors: {
+           themeblue: {
+             600: '#2563eb',
+             700: '#1d4ed8',
+           },
+           themered: {
+             600: '#dc2626',
+             700: '#b91c1c',
+           },
+           themeorange: {
+             600: '#ea580c',
+             700: '#c2410c',
+           },
+         },
+       },
+     },
+   }
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .font-pacifico {
+      font-family: 'Pacifico', cursive;
+    }
+    .zoom-enter {
+      animation: zoomIn 0.4s ease forwards;
+    }
+    @keyframes zoomIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    /* Limit nav button text to fit sidebar width */
+    aside nav button span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 4.5rem; /* Adjust to fit sidebar width */
+    }
+    /* Theme color classes for buttons and highlights */
+    .theme-blue {
+      --tw-text-opacity: 1;
+      color: rgb(37 99 235 / var(--tw-text-opacity));
+    }
+    .theme-blue-hover:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+    }
+    .theme-red {
+      --tw-text-opacity: 1;
+      color: rgb(220 38 38 / var(--tw-text-opacity));
+    }
+    .theme-red-hover:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+    }
+    .theme-orange {
+      --tw-text-opacity: 1;
+      color: rgb(234 88 12 / var(--tw-text-opacity));
+    }
+    .theme-orange-hover:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(234 88 12 / var(--tw-bg-opacity));
+    }
+  </style>
+ </head>
+ <body class="bg-[#f3f5fc] dark:bg-gray-900 dark:text-gray-300 min-h-screen flex flex-col transition-colors duration-300">
+  <div class="flex flex-1 relative">
+   <!-- Sidebar -->
+   <aside id="sidebar" class="fixed inset-y-0 left-0 z-30 w-24 bg-[#f3f5fc] dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col items-center py-8 space-y-10 select-none transition-colors duration-300 md:static md:translate-x-0 md:flex-shrink-0">
+    <div class="flex flex-col items-center space-y-1">
+     <div class="w-5 h-5 border-t-2 border-l-2 border-red-600 rounded-tl-sm"></div>
+     <div class="font-pacifico text-xl text-black dark:text-white select-text">
+      Zipagan
+     </div>
+     <div class="w-5 h-5 border-b-2 border-r-2 border-red-600 rounded-br-sm"></div>
+    </div>
+    <nav class="flex flex-col space-y-6 text-xs font-semibold w-full px-2">
+     <button aria-current="page" class="flex items-center space-x-2 w-full text-left text-red-600 font-semibold dark:text-red-500" data-section="home" type="button" title="Home">
+      <i class="fas fa-home text-sm flex-shrink-0"></i>
+      <span>Home</span>
+     </button>
+     <button class="flex items-center space-x-2 w-full text-left text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white" data-section="about" type="button" title="About Me">
+      <i class="fas fa-user text-sm flex-shrink-0"></i>
+      <span>About Me</span>
+     </button>
+     <button class="flex items-center space-x-2 w-full text-left text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white" data-section="contact" type="button" title="Contact">
+      <i class="fas fa-comments text-sm flex-shrink-0"></i>
+      <span>Contact</span>
+     </button>
+     <button class="flex items-center space-x-2 w-full text-left text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white" data-section="projects" type="button" title="My Projects">
+      <i class="fas fa-briefcase text-sm flex-shrink-0"></i>
+      <span>My Projects</span>
+     </button>
+     <button class="flex items-center space-x-2 w-full text-left text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white" data-section="achievements" type="button" title="Achievements">
+      <i class="fas fa-trophy text-sm flex-shrink-0"></i>
+      <span>Achievements</span>
+     </button>
+    </nav>
+   </aside>
+
+   <!-- Mobile menu button -->
+   <button id="mobileMenuButton" aria-label="Toggle menu" class="fixed top-4 left-4 z-40 w-10 h-10 bg-white dark:bg-gray-700 rounded-full shadow flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 md:hidden">
+    <i class="fas fa-bars text-lg"></i>
+   </button>
+
+   <!-- Overlay for mobile menu -->
+   <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-30 z-20 hidden md:hidden"></div>
+
+   <!-- Main content -->
+   <main class="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 xl:px-40 relative overflow-auto transition-colors duration-300">
+    <!-- Top right icons -->
+    <div class="absolute top-6 right-6 flex flex-col space-y-3 z-20">
+     <button id="darkModeToggle" aria-label="Toggle dark mode" class="w-8 h-8 bg-white dark:bg-gray-700 rounded-full shadow flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300">
+      <i class="fas fa-moon"></i>
+     </button>
+    </div>
+    <!-- Sections container -->
+    <section id="home" class="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-start gap-10 md:gap-20 px-4 md:px-8">
+  <!-- Text Section -->
+  <div class="max-w-xl text-left zoom-enter">
+    <p class="text-black dark:text-gray-300 font-semibold text-lg mb-1">
+      Hello, my name is
+      <span class="font-pacifico text-red-600 dark:text-red-500 ml-1">
+        Adrian Zipagan
+      </span>
+    </p>
+    <h1 class="text-2xl md:text-3xl font-extrabold text-black dark:text-white mb-3">
+      I'm a
+      <span class="text-red-600 dark:text-red-500">
+        First year Student
+      </span>
+    </h1>
+    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
+      Welcome! This portfolio showcases my skills and experience in 1st year BSIT. Here you'll find a collection of my best work, demonstrating my capabilities and creative approach. I invite you to explore the projects and learn more about my passion for the IT industry.
+    </p>
+  </div>
+
+  <!-- Image Section -->
+  <div class="relative rounded-lg overflow-hidden shadow-lg w-48 h-48 md:w-56 md:h-56 zoom-enter">
+    <img alt="Portrait of Adrian Zipagan" class="w-full h-full object-cover" draggable="false"
+      src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/475954327_122104470122745966_8769435676881186205_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGpb6r2l39tfSGEMRXTXurk_Er60SsOwB38SvrRKw7AHeI2-pPMaZL25IzaA_wOAqqvmOHBeHsgRz_qEz-ZKoTy&_nc_ohc=T01rsx-f7_gQ7kNvwFQMxwQ&_nc_oc=AdlGTTpqFcUKtLr2H2g53U1YLScf_iTVbqhFI8xfV5HKpCW_d_YA7mTqaHE1eI48PZ0&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=LbakF9WvN39Yon7wiadsGw&oh=00_AfOkcSjkyGUL1Y9xjDLYDgdDwmdqFDu6z2od54gay7Y6aw&oe=68488E27" />
+    <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-red-600 rounded-tl-sm pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-red-600 rounded-br-sm pointer-events-none"></div>
+  </div>
+</section>
+
+    <section id="about" class="hidden max-w-7xl mx-auto text-left zoom-enter">
+     <h2 class="text-3xl font-extrabold text-black dark:text-white mb-6">
+      About Me
+     </h2>
+     <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-3 max-w-md">
+      <li>
+       <span class="font-semibold">Birthday:</span> August 24, 2006
+      </li>
+      <li>
+       <span class="font-semibold">City:</span>Sucat Muntinlupa
+      </li>
+      <li>
+       <span class="font-semibold">Age:</span> 18
+      </li>
+      <li>
+       <span class="font-semibold">Phone Number:</span> 09758225433
+      </li>
+     </ul>
+    </section>
+    <section id="contact" class="hidden max-w-7xl mx-auto text-left zoom-enter">
+     <h2 class="text-3xl font-extrabold text-black dark:text-white mb-6">
+      Contact Me
+     </h2>
+     <form action="https://mail.google.com/mail/?view=cm&fs=1&to=owner@example.com" method="get" target="_blank" class="max-w-md space-y-5">
+      <div>
+       <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1" for="name">
+        Name
+       </label>
+       <input class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-gray-200" id="name" name="name" placeholder="Your name" required="" type="text"/>
+      </div>
+      <div>
+       <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1" for="email">
+        Email
+       </label>
+       <input class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-gray-200" id="email" name="su" placeholder="Your email" required="" type="email"/>
+      </div>
+      <div>
+       <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1" for="message">
+        Message
+       </label>
+       <textarea class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-gray-200" id="message" name="body" placeholder="Your message" required="" rows="4"></textarea>
+      </div>
+      <button class="bg-red-600 dark:bg-red-700 text-white text-xs font-semibold px-5 py-2 rounded-full hover:bg-red-700 dark:hover:bg-red-800 transition" type="submit">
+       Send Message
+      </button>
+     </form>
+    </section>
+    <section id="projects" class="hidden max-w-7xl mx-auto text-left zoom-enter">
+     <h2 class="text-3xl font-extrabold text-black dark:text-white mb-6">
+      My Projects
+     </h2>
+     <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xl">
+      This section is under construction. Please check back later for updates on my projects.
+     </p>
+    </section>
+    <section id="achievements" class="hidden max-w-7xl mx-auto text-left zoom-enter">
+     <h2 class="text-3xl font-extrabold text-black dark:text-white mb-6">
+      Achievements
+     </h2>
+     <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xl">
+      This section is under construction. Please check back later for updates on my achievements.
+     </p>
+    </section>
+   </main>
+  </div>
+  <!-- Footer -->
+  <footer class="bg-[#f3f5fc] dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-6 mt-auto transition-colors duration-300">
+   <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-40 flex justify-center space-x-6">
+    <a aria-label="Facebook" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition text-xl" href="https://www.facebook.com/adrian.zipagan.5" rel="noopener noreferrer" target="_blank" title="Facebook">
+     <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/adrian_zipagan_/" target="_blank" class="social-icon">
+      <i class="fab fa-instagram"></i> Follow us on Instagram
+    </a>
+   </div>
+  </footer>
+
+  <script>
+   const buttons = document.querySelectorAll('aside nav button');
+   const sections = document.querySelectorAll('main section');
+   const darkModeToggle = document.getElementById('darkModeToggle');
+   const settingsToggle = document.getElementById('settingsToggle');
+   const mobileMenuButton = document.getElementById('mobileMenuButton');
+   const sidebar = document.getElementById('sidebar');
+   const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+   // Theme colors array and index
+   const themeColors = ['red', 'blue', 'orange'];
+   let currentThemeIndex = 0;
+
+   // Apply theme color classes to sidebar nav active button and main highlights
+   function applyThemeColor(color) {
+     // Remove previous theme classes from nav buttons
+     buttons.forEach(btn => {
+       btn.classList.remove('text-red-600', 'font-semibold', 'text-blue-600', 'text-orange-600');
+       btn.classList.remove('dark:text-red-500', 'dark:text-blue-500', 'dark:text-orange-500');
+       btn.classList.add('text-gray-700', 'hover:text-gray-900', 'dark:text-gray-300', 'dark:hover:text-white');
+     });
+
+     // Add theme color to active button
+     const activeBtn = Array.from(buttons).find(btn => btn.classList.contains('font-semibold'));
+     if (activeBtn) {
+       activeBtn.classList.remove('text-gray-700', 'hover:text-gray-900', 'dark:text-gray-300', 'dark:hover:text-white');
+       if (color === 'red') {
+         activeBtn.classList.add('text-red-600', 'font-semibold', 'dark:text-red-500');
+       } else if (color === 'blue') {
+         activeBtn.classList.add('text-blue-600', 'font-semibold', 'dark:text-blue-500');
+       } else if (color === 'orange') {
+         activeBtn.classList.add('text-orange-600', 'font-semibold', 'dark:text-orange-500');
+       }
+     }
+
+     // Update main highlights (like "Alimi Mousaad" and "Web Develope" text)
+     const nameSpans = document.querySelectorAll('.font-pacifico.text-red-600, .font-pacifico.text-blue-600, .font-pacifico.text-orange-600');
+     nameSpans.forEach(span => {
+       span.classList.remove('text-red-600', 'text-blue-600', 'text-orange-600', 'dark:text-red-500', 'dark:text-blue-500', 'dark:text-orange-500');
+       if (color === 'red') {
+         span.classList.add('text-red-600', 'dark:text-red-500');
+       } else if (color === 'blue') {
+         span.classList.add('text-blue-600', 'dark:text-blue-500');
+       } else if (color === 'orange') {
+         span.classList.add('text-orange-600', 'dark:text-orange-500');
+       }
+     });
+
+     const webDevSpans = document.querySelectorAll('h1 span.text-red-600, h1 span.text-blue-600, h1 span.text-orange-600');
+     webDevSpans.forEach(span => {
+       span.classList.remove('text-red-600', 'text-blue-600', 'text-orange-600', 'dark:text-red-500', 'dark:text-blue-500', 'dark:text-orange-500');
+       if (color === 'red') {
+         span.classList.add('text-red-600', 'dark:text-red-500');
+       } else if (color === 'blue') {
+         span.classList.add('text-blue-600', 'dark:text-blue-500');
+       } else if (color === 'orange') {
+         span.classList.add('text-orange-600', 'dark:text-orange-500');
+       }
+     });
+
+     // Update buttons (like "More About Me" and "Send Message") background colors
+     const redButtons = document.querySelectorAll('button.bg-red-600, button.bg-red-700, button.hover\\:bg-red-700, button.dark\\:bg-red-700, button.dark\\:hover\\:bg-red-800');
+     redButtons.forEach(btn => {
+       btn.classList.remove('bg-red-600', 'bg-red-700', 'hover:bg-red-700', 'dark:bg-red-700', 'dark:hover:bg-red-800');
+       if (color === 'red') {
+         btn.classList.add('bg-red-600', 'hover:bg-red-700', 'dark:bg-red-700', 'dark:hover:bg-red-800');
+       } else if (color === 'blue') {
+         btn.classList.add('bg-themeblue-600', 'hover:bg-themeblue-700');
+         btn.classList.remove('dark:bg-red-700', 'dark:hover:bg-red-800');
+       } else if (color === 'orange') {
+         btn.classList.add('bg-themeorange-600', 'hover:bg-themeorange-700');
+         btn.classList.remove('dark:bg-red-700', 'dark:hover:bg-red-800');
+       }
+     });
+   }
+
+   function showSection(id) {
+     sections.forEach((section) => {
+       if (section.id === id) {
+         section.classList.remove('hidden');
+         // Trigger reflow to restart animation
+         void section.offsetWidth;
+         section.classList.add('zoom-enter');
+       } else {
+         section.classList.add('hidden');
+         section.classList.remove('zoom-enter');
+       }
+     });
+     buttons.forEach((btn) => {
+       if (btn.dataset.section === id) {
+         btn.classList.add('font-semibold');
+         btn.classList.remove('text-gray-700', 'hover:text-gray-900', 'dark:text-gray-300', 'dark:hover:text-white');
+       } else {
+         btn.classList.remove('font-semibold');
+         btn.classList.add('text-gray-700', 'hover:text-gray-900', 'dark:text-gray-300', 'dark:hover:text-white');
+       }
+     });
+     applyThemeColor(themeColors[currentThemeIndex]);
+     // Close mobile menu on selection
+     if (window.innerWidth < 768) {
+       closeMobileMenu();
+     }
+   }
+
+   buttons.forEach((btn) => {
+     btn.addEventListener('click', () => {
+       showSection(btn.dataset.section);
+     });
+   });
+
+   // Initialize default section
+   showSection('home');
+
+   // Dark mode toggle
+   darkModeToggle.addEventListener('click', () => {
+     document.documentElement.classList.toggle('dark');
+     // Save preference
+     if (document.documentElement.classList.contains('dark')) {
+       localStorage.setItem('theme', 'dark');
+     } else {
+       localStorage.setItem('theme', 'light');
+     }
+   });
+
+   // Load saved theme preference
+   if (localStorage.getItem('theme') === 'dark') {
+     document.documentElement.classList.add('dark');
+   }
+
+   // Settings toggle cycles theme colors
+   settingsToggle.addEventListener('click', () => {
+     currentThemeIndex = (currentThemeIndex + 1) % themeColors.length;
+     applyThemeColor(themeColors[currentThemeIndex]);
+   });
+
+   // Mobile menu toggle
+   function openMobileMenu() {
+     sidebar.classList.remove('-translate-x-full');
+     mobileMenuOverlay.classList.remove('hidden');
+     document.body.style.overflow = 'hidden';
+   }
+   function closeMobileMenu() {
+     sidebar.classList.add('-translate-x-full');
+     mobileMenuOverlay.classList.add('hidden');
+     document.body.style.overflow = '';
+   }
+
+   mobileMenuButton.addEventListener('click', () => {
+     if (sidebar.classList.contains('-translate-x-full')) {
+       openMobileMenu();
+     } else {
+       closeMobileMenu();
+     }
+   });
+
+   mobileMenuOverlay.addEventListener('click', () => {
+     closeMobileMenu();
+   });
+
+   // Initialize sidebar hidden on mobile
+   function initMobileMenu() {
+     if (window.innerWidth < 768) {
+       sidebar.classList.add('-translate-x-full', 'fixed', 'top-0', 'left-0', 'h-full', 'z-30', 'transition-transform', 'duration-300', 'ease-in-out');
+     } else {
+       sidebar.classList.remove('-translate-x-full', 'fixed', 'top-0', 'left-0', 'h-full', 'z-30', 'transition-transform', 'duration-300', 'ease-in-out');
+       mobileMenuOverlay.classList.add('hidden');
+       document.body.style.overflow = '';
+     }
+   }
+   window.addEventListener('resize', initMobileMenu);
+   window.addEventListener('load', initMobileMenu);
+  </script>
+ </body>
+</html>
